@@ -18,7 +18,6 @@ public class YammJavaBeApplication {
 
     @Bean
     public Executor taskExecutor() {
-        System.out.println("Create task executor");
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(10);
         executor.setMaxPoolSize(10);

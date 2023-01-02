@@ -24,7 +24,6 @@ public class UserSpreadsheetService {
 
     @Autowired
     public UserSpreadsheetService (HttpServletRequest request) throws Exception {
-        System.out.println("Create new UserSpreadsheetService");
         String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
         sheetsService = new Sheets.Builder(
                 GoogleNetHttpTransport.newTrustedTransport(),

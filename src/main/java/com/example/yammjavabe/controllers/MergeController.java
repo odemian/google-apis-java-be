@@ -15,15 +15,12 @@ public class MergeController {
 
     @Autowired
     public MergeController(UserGmailService userGmailService, UserSpreadsheetService userSpreadsheetService) {
-        System.out.println("Create new MergeController");
         this.userGmailService = userGmailService;
         this.userSpreadsheetService = userSpreadsheetService;
     }
 
     @PostMapping
     public void sendMerge (@RequestBody MergeRequest mergeRequest) throws Exception {
-        System.out.println("Process user " + mergeRequest.getUserEmail());
         userGmailService.logDrafts(mergeRequest);
-        System.out.println("Return user " + mergeRequest.getUserEmail());
     }
 }

@@ -24,7 +24,6 @@ public class UserGmailService {
 
     @Autowired
     public UserGmailService (HttpServletRequest request) throws Exception {
-        System.out.println("Create new UserGmailService");
         String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
         gmailService = new Gmail.Builder(
                 GoogleNetHttpTransport.newTrustedTransport(),
