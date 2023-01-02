@@ -1,0 +1,24 @@
+POST http://localhost:8080/merge
+Authorization: Bearer ya29.a0AX9GBdWIlqHxgrcUxll5FRgRq6r62_upyi4yv2x5x0dtYkl2P2XHpuxBPyU0iUvdVsbhB5Ub57my4ovt1nfPFS1U4nlUuyF28gs5dVEKGfjbz20qhLFZgVGhMNUp2ksNMJ549MaBQ3hqGho88ukQmhw9hrIQaCgYKARMSARISFQHUCsbCDwNLdxjyjeSGLiu-JfUnSA0163
+Content-Type: application/json
+
+{
+  "spreadsheetId": "11rCm6yBHLElNXZYZn-F6cZ6lanp3XYnPmQ7GH4zKNkg",
+  "sheetId": 1827991267,
+  "draftId": "23ws",
+  "userEmail": "oleksandr.demian@revevol.eu"
+}
+
+###
+POST http://localhost:8080/merge
+Authorization: Bearer ya29.a0AX9GBdXIC4osrlIusXWq32G-wlOtNXeyD9T59l8wyaMXg7CGk6qcbkM3MeAbRgY3xR6svYN9ZDcmJO17j-9KiKRqLGWljg9BWR6rJPyP2hwbgoQ9kCB15pww9KWGlyWbMZV7_R2i0IOn9VdXaEcL6qja6jHYaCgYKAUMSARESFQHUCsbCaQ9NyOEH05KClAq9GkguFQ0163
+Content-Type: application/json
+
+{
+  "spreadsheetId": "11rCm6yBHLElNXZYZn-F6cZ6lanp3XYnPmQ7GH4zKNkg",
+  "sheetId": 1827991267,
+  "draftId": "d",
+  "userEmail": "oleksandr@addonsforgapps.com"
+}
+
+###
