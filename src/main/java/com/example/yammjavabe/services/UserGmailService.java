@@ -7,13 +7,13 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Draft;
 import com.google.api.services.gmail.model.ListDraftsResponse;
+import com.google.api.services.gmail.model.Message;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.RequestScope;
-
 import java.io.IOException;
 
 @Service
@@ -40,13 +40,17 @@ public class UserGmailService {
         return gmailService.users().drafts().get("me", draftId).execute();
     }
 
+    public Message sendEmail (Message message) throws IOException {
+        return gmailService.users().messages().send("me", message).execute();
+    }
+
     @Async
-    public void logDrafts (MergeRequest mergeRequest) throws IOException {
+    public void logDrafts (String userEmail) throws IOException {
         var drafts = getAllDrafts();
 
         for (var getDraft : drafts.getDrafts()) {
             Draft draft = getDraftById(getDraft.getId());
-            System.out.println(mergeRequest.getUserEmail() + ": " + draft.getMessage().getSnippet());
+            System.out.println(userEmail + ": " + draft.getMessage().getSnippet());
         }
     }
 }
