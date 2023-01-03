@@ -1,30 +1,21 @@
-package com.example.yammjavabe.services;
+package com.example.yammjavabe.services.user;
 
 import com.example.yammjavabe.utils.UserCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.*;
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
-@RequestScope
 public class UserSpreadsheetService {
     private static final String APPLICATION_NAME = "Google Sheets Example";
     private Sheets sheetsService;
 
-    @Autowired
-    public UserSpreadsheetService (HttpServletRequest request) throws Exception {
-        String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+    public UserSpreadsheetService (String bearerToken) throws Exception {
         sheetsService = new Sheets.Builder(
                 GoogleNetHttpTransport.newTrustedTransport(),
                 JacksonFactory.getDefaultInstance(), UserCredential.getGoogleCredential(bearerToken))

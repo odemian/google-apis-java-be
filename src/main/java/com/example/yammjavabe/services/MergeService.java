@@ -1,45 +1,41 @@
 package com.example.yammjavabe.services;
 
+import com.example.yammjavabe.entities.MergeData;
 import com.example.yammjavabe.entities.MergeSettings;
+import com.example.yammjavabe.services.user.UserGmailService;
+import com.example.yammjavabe.services.user.UserSpreadsheetService;
 import com.example.yammjavabe.utils.CreateEmail;
-import com.google.api.client.util.Base64;
+import com.example.yammjavabe.utils.MergeDataUtils;
+import com.example.yammjavabe.utils.TemplateProcessingUtils;
 import com.google.api.services.gmail.model.Draft;
 import com.google.api.services.gmail.model.Message;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.google.api.services.sheets.v4.model.MatchedValueRange;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
 
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.Properties;
+import java.util.List;
 
 @Service
-@RequestScope
 public class MergeService {
+    @Async
+    public void sendMerge(String bearerToken, MergeSettings mergeSettings) throws Exception {
+        UserGmailService userGmailService = new UserGmailService(bearerToken);
+        UserSpreadsheetService userSpreadsheetService = new UserSpreadsheetService(bearerToken);
 
-    private final UserGmailService userGmailService;
-    private final UserSpreadsheetService userSpreadsheetService;
-
-    @Autowired
-    public MergeService(UserGmailService userGmailService, UserSpreadsheetService userSpreadsheetService) {
-        this.userGmailService = userGmailService;
-        this.userSpreadsheetService = userSpreadsheetService;
-    }
-
-    public void sendMerge(MergeSettings mergeSettings) throws IOException, MessagingException {
         Draft draft = userGmailService.getDraftById(mergeSettings.getDraftId());
 
         String to = "oleksandr.demian@revevol.eu";
         String from = "me";
         String subject = "Test subject";
-        String rawBody = draft.getMessage().getRaw();
+        String rawBody = CreateEmail.getEmailBodyText(draft.getMessage());
 
-        Message message = CreateEmail.create(to, from, subject, rawBody);
-        userGmailService.sendEmail(message);
+        List<MatchedValueRange> ranges = userSpreadsheetService.getValues(mergeSettings.getSpreadsheetId(), mergeSettings.getSheetId(), new Integer[] { 0, 0 });
+        MergeData mergeData = MergeDataUtils.createMergeData(ranges.get(0).getValueRange().getValues());
+
+        for (List<Object> data : mergeData.getData()) {
+            String processTemplate = TemplateProcessingUtils.createTemplate(rawBody, mergeData.getHeaders(), data);
+            Message message = CreateEmail.create(to, from, subject, processTemplate);
+            userGmailService.sendEmail(message);
+        }
     }
 }
