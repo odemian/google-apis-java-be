@@ -20,9 +20,10 @@ public class MergeController {
     @PostMapping
     public void sendMerge (@RequestHeader(HttpHeaders.AUTHORIZATION) String bearerToken, @RequestBody MergeRequest mergeRequest) throws Exception {
         MergeSettings settings = new MergeSettings();
-        settings.setDraftId(mergeRequest.getDraftId());
-        settings.setSheetId(mergeRequest.getSheetId());
+        settings.setEmailHeader(mergeRequest.getEmailHeader());
         settings.setSpreadsheetId(mergeRequest.getSpreadsheetId());
+        settings.setSheetId(mergeRequest.getSheetId());
+        settings.setDraftId(mergeRequest.getDraftId());
 
         mergeService.sendMerge(bearerToken, settings);
     }

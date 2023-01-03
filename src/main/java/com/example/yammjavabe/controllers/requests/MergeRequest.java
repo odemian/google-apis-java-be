@@ -5,6 +5,7 @@ public class MergeRequest {
     private String userEmail;
     private String spreadsheetId;
     private Integer sheetId;
+    private String emailHeader;
 
     public String getDraftId() {
         return draftId;
@@ -39,6 +40,15 @@ public class MergeRequest {
 
     public MergeRequest setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+        return this;
+    }
+
+    public String getEmailHeader() {
+        return emailHeader;
+    }
+
+    public MergeRequest setEmailHeader(String emailHeader) {
+        this.emailHeader = emailHeader;
         return this;
     }
 }

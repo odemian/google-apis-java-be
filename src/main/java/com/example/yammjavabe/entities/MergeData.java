@@ -7,7 +7,7 @@ public class MergeData {
     private Map<String, Integer> headers;
     private List<List<Object>> data;
 
-    public int getHeaderIndex (String header) {
+    public Integer getHeaderIndex (String header) {
         return headers.get(header);
     }
 

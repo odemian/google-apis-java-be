@@ -4,6 +4,7 @@ public class MergeSettings {
     private String spreadsheetId;
     private Integer sheetId;
     private String draftId;
+    private String emailHeader;
 
     public String getSpreadsheetId() {
         return spreadsheetId;
@@ -29,6 +30,15 @@ public class MergeSettings {
 
     public MergeSettings setDraftId(String draftId) {
         this.draftId = draftId;
+        return this;
+    }
+
+    public String getEmailHeader() {
+        return emailHeader;
+    }
+
+    public MergeSettings setEmailHeader(String emailHeader) {
+        this.emailHeader = emailHeader;
         return this;
     }
 }

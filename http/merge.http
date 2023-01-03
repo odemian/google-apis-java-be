@@ -11,14 +11,15 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/merge
-Authorization: Bearer ya29.a0AX9GBdX7fyReDtfcBzUF6k5sMyi1Zrb9U2EBald861K3A9STAvGidKg7YgRN-k7QxOHEF3xLa5NRp04ZYAm6nkLNhGbICiv4nO-IzESUAWZ4IZMZApFZfaF33fAtVp4PXyKsaPSvTPY0ApvtKohXHJKzPbdyaCgYKAZUSARESFQHUCsbCOe6oWbNLUv6V2hMYTCFJtw0163
+Authorization: Bearer ya29.a0AX9GBdXXRSWhA17_TxOJ98_IU9GydVDkV4BZgitTcvqEz6kouNBQHDkCm7sSWIJ4sXHVMmpX091GLlPHFZycRK-D0NbxKO9RaRfouOJVy7Tr7OfeiHIg9E3eNKLs9OEHtYR5MRHgeRxmiItp46WzMD4JBVlxmFIaCgYKAecSAQASFQHUCsbCYbMV3KqSfcrNdWfW5dpYQQ0166
 Content-Type: application/json
 
 {
   "spreadsheetId": "11rCm6yBHLElNXZYZn-F6cZ6lanp3XYnPmQ7GH4zKNkg",
   "sheetId": 1827991267,
   "draftId": "r-7011512542691182400",
-  "userEmail": "oleksandr@addonsforgapps.com"
+  "userEmail": "oleksandr@addonsforgapps.com",
+  "emailHeader": "Mail"
 }
 
 ###
