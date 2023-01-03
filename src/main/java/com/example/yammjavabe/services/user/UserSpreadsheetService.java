@@ -11,6 +11,11 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * UserSpreadsheetService is not a Spring service, because it has to be bind to the user token
+ * ../request/SpreadsheetService is a request scope Spring service that inherits all functions from UserGmailService and can be used as part of Spring lifecycle
+ * This is because in some cases we need to manually create token bind services (ex: merge runs on separate thread, and cannot access RequestScope components)
+ */
 public class UserSpreadsheetService {
     private static final String APPLICATION_NAME = "Google Sheets Example";
     private Sheets sheetsService;

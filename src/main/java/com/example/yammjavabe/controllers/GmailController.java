@@ -20,7 +20,7 @@ public class GmailController {
         this.gmailService = gmailService;
     }
 
-    @GetMapping
+    @GetMapping("/drafts")
     public List<Draft> getAllDrafts () throws IOException {
         return gmailService.getAllDrafts().getDrafts();
     }
