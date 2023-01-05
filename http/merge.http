@@ -1,5 +1,5 @@
 POST http://localhost:8080/merge
-Authorization: Bearer ya29.a0AX9GBdWIlqHxgrcUxll5FRgRq6r62_upyi4yv2x5x0dtYkl2P2XHpuxBPyU0iUvdVsbhB5Ub57my4ovt1nfPFS1U4nlUuyF28gs5dVEKGfjbz20qhLFZgVGhMNUp2ksNMJ549MaBQ3hqGho88ukQmhw9hrIQaCgYKARMSARISFQHUCsbCDwNLdxjyjeSGLiu-JfUnSA0163
+Authorization: NONE
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###
 POST http://localhost:8080/merge
-Authorization: Bearer ya29.a0AX9GBdXXRSWhA17_TxOJ98_IU9GydVDkV4BZgitTcvqEz6kouNBQHDkCm7sSWIJ4sXHVMmpX091GLlPHFZycRK-D0NbxKO9RaRfouOJVy7Tr7OfeiHIg9E3eNKLs9OEHtYR5MRHgeRxmiItp46WzMD4JBVlxmFIaCgYKAecSAQASFQHUCsbCYbMV3KqSfcrNdWfW5dpYQQ0166
+Authorization: NONE
 Content-Type: application/json
 
 {

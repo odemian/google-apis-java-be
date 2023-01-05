@@ -1,4 +1,4 @@
 GET http://localhost:8080/gmail/drafts
-Authorization: Bearer ya29.a0AX9GBdXXRSWhA17_TxOJ98_IU9GydVDkV4BZgitTcvqEz6kouNBQHDkCm7sSWIJ4sXHVMmpX091GLlPHFZycRK-D0NbxKO9RaRfouOJVy7Tr7OfeiHIg9E3eNKLs9OEHtYR5MRHgeRxmiItp46WzMD4JBVlxmFIaCgYKAecSAQASFQHUCsbCYbMV3KqSfcrNdWfW5dpYQQ0166
+Authorization: NONE
 
 ###
