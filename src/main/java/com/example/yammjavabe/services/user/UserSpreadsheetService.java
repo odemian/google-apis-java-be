@@ -1,5 +1,6 @@
 package com.example.yammjavabe.services.user;
 
+import com.example.yammjavabe.utils.AOneNotationUtils;
 import com.example.yammjavabe.utils.UserCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -7,7 +8,6 @@ import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.*;
 
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class UserSpreadsheetService {
                 .build();
     }
 
-    public List<MatchedValueRange> getValues (String spreadsheetId, Integer sheetId, Integer[] rect) throws IOException, GeneralSecurityException {
+    public List<List<Object>> getValues (String spreadsheetId, Integer sheetId, Integer[] rect) throws IOException {
         DataFilter dataFilter = new DataFilter();
 
         GridRange gridRange = new GridRange();
@@ -53,6 +53,19 @@ public class UserSpreadsheetService {
                 .values()
                 .batchGetByDataFilter(spreadsheetId, dataFilterRequest)
                 .execute();
-        return response.getValueRanges();
+
+        // read values from first found range
+        return response.getValueRanges().get(0).getValueRange().getValues();
+    }
+
+    public void writeValues (String spreadsheetId, Integer sheetId, Integer[] range, List<List<Object>> values) throws IOException {
+        ValueRange body = new ValueRange();
+        body.setValues(values);
+        body.setRange(AOneNotationUtils.convert(range[0], range[1]));
+        // todo: update values in sheet (is it possible to use sheetId?)
+        sheetsService.spreadsheets()
+                .values()
+                .update(spreadsheetId, body.getRange(), body)
+                .execute();
     }
 }

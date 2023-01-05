@@ -11,7 +11,6 @@ import com.example.yammjavabe.utils.MergeDataUtils;
 import com.example.yammjavabe.utils.TemplateProcessingUtils;
 import com.google.api.services.gmail.model.Draft;
 import com.google.api.services.gmail.model.Message;
-import com.google.api.services.sheets.v4.model.MatchedValueRange;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +34,8 @@ public class MergeService {
 
         EmailBodyParts bodyParts = CreateEmail.getEmailBodyText(draft.getMessage());
 
-        List<MatchedValueRange> ranges = userSpreadsheetService.getValues(mergeSettings.getSpreadsheetId(), mergeSettings.getSheetId(), new Integer[] { 0, 0 });
-        MergeData mergeData = MergeDataUtils.createMergeData(ranges.get(0).getValueRange().getValues());
+        List<List<Object>> values = userSpreadsheetService.getValues(mergeSettings.getSpreadsheetId(), mergeSettings.getSheetId(), new Integer[] { 0, 0 });
+        MergeData mergeData = MergeDataUtils.createMergeData(values);
         Integer toIndex = mergeData.getHeaderIndex(mergeSettings.getEmailHeader());
 
         if (toIndex == null) {
@@ -56,7 +55,6 @@ public class MergeService {
             if (bodyParts.getHtml() != null) {
                 htmlText = TemplateProcessingUtils.createTemplate(bodyParts.getHtml(), mergeData.getHeaders(), data);
             }
-
 
             Message message = CreateEmail.create(to, from, processSubject, htmlText, plainText);
             userGmailService.sendEmail(message);
